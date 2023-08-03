@@ -163,6 +163,7 @@ resource "azurerm_linux_virtual_machine" "flask_vm" {
     host        = azurerm_public_ip.flask_vm_public_ip.ip_address
     type        = "ssh"
     user        = "azureuser"  # The SSH user for your VM
+    private_key = tls_private_key.ssh_key.private_key_pem
   }
 
   provisioner "remote-exec" {
@@ -204,6 +205,7 @@ resource "azurerm_linux_virtual_machine" "postgresql_vm" {
     host        = azurerm_public_ip.postgresql_vm_public_ip.ip_address
     type        = "ssh"
     user        = "azureuser"  # The SSH user for your VM
+    private_key = tls_private_key.ssh_key.private_key_pem
   }
 
   provisioner "remote-exec" {
