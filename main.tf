@@ -158,6 +158,19 @@ resource "azurerm_linux_virtual_machine" "flask_vm" {
     sku       = "18.04-lts"
     version   = "latest"
   }
+
+  connection {
+    host        = azurerm_public_ip.flask_vm_public_ip.ip_address
+    type        = "ssh"
+    user        = "azureuser"  # The SSH user for your VM
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Hello from Flask VM'"
+      
+    ]
+  }
 }
 
 # Create PostgreSQL VM
@@ -186,6 +199,18 @@ resource "azurerm_linux_virtual_machine" "postgresql_vm" {
     offer     = "UbuntuServer"
     sku       = "18.04-lts"
     version   = "latest"
+  }
+  connection {
+    host        = azurerm_public_ip.postgresql_vm_public_ip.ip_address
+    type        = "ssh"
+    user        = "azureuser"  # The SSH user for your VM
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Hello from PostgreSQL VM'"
+      
+    ]
   }
 }
 
