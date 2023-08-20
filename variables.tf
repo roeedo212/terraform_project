@@ -25,7 +25,7 @@ variable "subnet_db_name" {
 
 variable "my_ip_address" {
   type    = string
-  default = "176.231.84.22"
+  default = "194.90.46.191"
 }
 
 variable "flask_vm_name" {
@@ -36,4 +36,9 @@ variable "flask_vm_name" {
 variable "db_vm_name" {
   type = string
   default = "vm-postgressql"
+}
+
+variable "db_password" {
+  type = string
+  description = "password for data base user"
 }
